@@ -1,6 +1,7 @@
 
 package tester;
 
+import java.util.*;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
@@ -16,44 +17,43 @@ public class Tester {
     public static void main(String[] args) {
             //initializing variables and arrays and junk
         Scanner read =new Scanner(System.in);
-        String[] kWords=new String[5];
+        ArrayList <String> kWords= new ArrayList<>();
             //user inputs keywords (for now, until we get the GUI portion running)
-        String[] iWords={"FPS", "STRATEGY", "MULTIPLAYER", "ACTION", "PUZZLE"};
+        String[] iWords={"FPS", "STRATEGY", "MULTIPLAYER", "ACTION", "PUZZLE", "RPG"};
             //^preset genres
-               
+        String confirm="y";
         System.out.println("Enter in your favorite genres");
         //enter in genres and store into an array
         
-        //***do an if statement for if they do or don't have more to input***
-        
-        for(int i=0; i<5; i++){
-            System.out.println(i+1 + ": ");
-            
-            kWords[i]=read.nextLine().toUpperCase();
+        while("y".equals(confirm)){ //user will input y to continue entering genres
+            //int i =0;
+            kWords.add(read.nextLine().toUpperCase());
+            //i++;
+            System.out.println("Continue? y/n");
+            confirm=read.nextLine();
             //capitalize so it makes a match as long as it is spelled correctly
         }
         //output the genres entered
         System.out.println("Here are your favorite genres");
-        for(int j=0; j<kWords.length; j++){
-            System.out.println((j+1) + ": " + kWords[j]);
-            
-        }
+        
+        System.out.println(kWords);
+        
         //converting arrays into a list
-        List<String> key = Arrays.asList(kWords); //converting the array into a list
-        //List<String> input = Arrays.asList(iWords);
+        //List<String> key = Arrays.asList(kWords); //converting the array into a list
+        List<String> gen = Arrays.asList(iWords);
         
         //Check if the preset genres contains the same values as user input
-        for(int a=0; a<kWords.length; a++){
+        for(int a=0; a<gen.size(); a++){
             
-            if(key.contains(iWords[a])){
+            if(kWords.contains(iWords[a])){
                 System.out.println("Yes!"); //if it does contain, say Yes!
                 System.out.println(iWords[a]); //outputs the value that it matches
             }
             
             else{ 
                   //if the arrays are the same amount
-                System.out.println("NO");
-                //System.out.println(key);
+                System.out.println("No match!! (" + iWords[a]+ ")");
+                
             }
             
         }
@@ -62,7 +62,7 @@ public class Tester {
         System.out.println("For Call of Duty");
         int cod = 0;
         for(int n=0; n<callOfDuty.length; n++){
-            if(key.contains(callOfDuty[n])){
+            if(kWords.contains(callOfDuty[n])){
                 //match keywords and add to a tally for fit
                 System.out.println(callOfDuty[n] + ", Match!");
                 cod++; 
